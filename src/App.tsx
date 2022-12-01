@@ -1,27 +1,15 @@
 import React from 'react'
 import './App.css'
-import { ActionButton } from './components/ActionButton'
-import { TestCounter } from './components/TestCounter'
 import { ChakraProvider } from '@chakra-ui/react'
+import { RouterProvider } from 'react-router-dom'
+import { appRouter } from './routes/appRouter'
+
+const router = appRouter()
 
 function App() {
   return (
     <ChakraProvider>
-      <div className="App">
-        <header className="App-header">
-          <h1>TPO Aplicaciones Interactivas - UADE 2022</h1>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-          <TestCounter />
-          <ActionButton variant="add" />
-        </header>
-      </div>
+      <RouterProvider router={router} />
     </ChakraProvider>
   )
 }

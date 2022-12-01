@@ -7,15 +7,12 @@ import { Button } from '@chakra-ui/react'
 import { colors } from '@mui/material'
 import { getButtonColors } from '../../theme/colors'
 
-export const ActionButtonVariant = {
-  add: 'add',
-  create: 'create',
-  edit: 'edit',
-  save: 'save',
+export enum ActionButtonVariant {
+  add = 'add',
+  create = 'create',
+  edit = 'edit',
+  save = 'save',
 }
-export type ActionButtonVariant =
-  typeof ActionButtonVariant[keyof typeof ActionButtonVariant]
-
 export type ActionButtonProps = {
   variant: ActionButtonVariant
   onClick?: () => void
