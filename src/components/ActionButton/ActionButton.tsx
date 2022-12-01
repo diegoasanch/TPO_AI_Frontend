@@ -63,7 +63,7 @@ export const ActionButton = ({ variant, onClick }: ActionButtonProps) => {
   return (
     <Button
       onClick={onClick}
-      variant="contained"
+      variant="solid"
       leftIcon={content.icon}
       bg={colors.normal}
       _active={{ bg: colors.active }}
