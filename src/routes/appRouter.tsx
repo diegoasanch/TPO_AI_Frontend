@@ -2,6 +2,7 @@ import React from 'react'
 
 import { createBrowserRouter, Navigate } from 'react-router-dom'
 import { PageRoute, RedirectRoute, routes } from './routes'
+import { PageTemplate } from '../components/PageTemplate/PageTemplate'
 
 export const appRouter = () => {
   const router = createBrowserRouter(
@@ -21,7 +22,11 @@ export const appRouter = () => {
 
       return {
         path: route.path,
-        element: <Component />,
+        element: (
+          <PageTemplate hideSidebar={route.noSidebar}>
+            <Component />
+          </PageTemplate>
+        ),
         caseSensitive: true,
       }
     })

@@ -22,7 +22,7 @@ export const Sidebar = ({ userRole, userName, onSignOut }: SidebarProps) => {
     <Flex
       direction="column"
       height="100%"
-      width="15rem"
+      width="18rem"
       bg="white"
       padding="1rem"
       paddingTop="1.5rem"

@@ -28,7 +28,7 @@ export const SessionButton = ({ onSignOut, userName }: SessionButtonProps) => {
           variant="ghost"
           rightIcon={<UnfoldMoreIcon sx={{ fontSize: '1rem' }} />}
         >
-          <Flex direction="row" alignItems="center" gap=".4rem" width="100%">
+          <Flex direction="row" alignItems="center" gap=".8rem" width="100%">
             <Avatar size="sm" name={userName} bg="grey" />
             <Text fontSize="md">{userName}</Text>
           </Flex>
