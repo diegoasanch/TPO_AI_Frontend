@@ -1,4 +1,7 @@
 import { ChakraProvider } from '@chakra-ui/react'
+import { MemoryRouter } from 'react-router-dom'
+import '@fontsource/roboto'
+import { theme } from '../src/theme/theme'
 
 export const parameters = {
   actions: { argTypesRegex: '^on[A-Z].*' },
@@ -12,8 +15,10 @@ export const parameters = {
 
 export const decorators = [
   (Story) => (
-    <ChakraProvider>
-      <Story />
+    <ChakraProvider theme={theme}>
+      <MemoryRouter>
+        <Story />
+      </MemoryRouter>
     </ChakraProvider>
   ),
 ]
