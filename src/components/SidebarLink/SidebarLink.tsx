@@ -30,7 +30,7 @@ export const SidebarLink = ({
     <Link to={path}>
       <Flex
         alignItems="center"
-        gap="5px"
+        gap=".5rem"
         color={isActive ? LinkColors.active : LinkColors.normal}
         _hover={{
           color: LinkColors.hover,
@@ -39,12 +39,12 @@ export const SidebarLink = ({
       >
         <Icon
           sx={{
-            fontSize: '1.5rem',
+            fontSize: '1.8rem',
             color: 'inherit',
           }}
         />
         <Text
-          fontSize="xl"
+          fontSize="2xl"
           color="inherit"
           fontWeight={isActive ? 'bold' : 'normal'}
           _groupHover={{
