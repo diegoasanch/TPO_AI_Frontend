@@ -4,6 +4,7 @@ import { Box, Flex, Heading } from '@chakra-ui/react'
 import { Role } from '../../utils/constants'
 import { AdminRoutes, UsuarioRoutes } from './sidebarRoutes'
 import { SessionButton } from '../SessionButton'
+import { SidebarLink } from '../SidebarLink'
 
 export type SidebarProps = {
   userRole: Role
@@ -30,6 +31,17 @@ export const Sidebar = ({ userRole, userName, onSignOut }: SidebarProps) => {
       <Heading as="h1" size="xl">
         Consorcio
       </Heading>
+
+      <Flex direction="column" gap=".5rem">
+        {routes.map((route) => (
+          <SidebarLink
+            key={route.path}
+            label={route.name}
+            path={route.path}
+            Icon={route.Icon}
+          />
+        ))}
+      </Flex>
 
       <Box>
         <SessionButton userName={userName} onSignOut={onSignOut} />
