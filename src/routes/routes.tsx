@@ -21,7 +21,7 @@ const Placeholder = () => {
   return <div>Placeholder, current route: {location.pathname}</div>
 }
 
-export const routes: Record<string, Route> = {
+export const routes = {
   index: {
     path: '/',
     redirect: 'reclamos', // TODO: create home page
@@ -116,4 +116,4 @@ export const routes: Record<string, Route> = {
     component: Placeholder,
     params: ['id'],
   },
-}
+} as const
