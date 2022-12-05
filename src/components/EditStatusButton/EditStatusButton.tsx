@@ -1,13 +1,4 @@
-import {
-  Flex,
-  Popover,
-  PopoverArrow,
-  PopoverContent,
-  PopoverHeader,
-  PopoverTrigger,
-  Select,
-  Spinner,
-} from '@chakra-ui/react'
+import { Flex, Select, Spinner } from '@chakra-ui/react'
 import React from 'react'
 import { ClaimStatus } from '../../utils/constants'
 import { camelToTitle } from '../../utils/text'

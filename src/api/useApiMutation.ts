@@ -1,5 +1,4 @@
-import { useCallback } from 'react'
-import { useMutation, useQueryClient } from 'react-query'
+import { useMutation } from 'react-query'
 
 export const useApiMutation = <
   T extends (params: P) => Promise<R>,
