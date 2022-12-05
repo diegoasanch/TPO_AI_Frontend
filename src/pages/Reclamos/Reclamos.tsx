@@ -12,6 +12,7 @@ import { ErrorBox } from '../../components/ErrorBox/ErrorBox'
 export const ReclamosPage = () => {
   const toast = useToast()
   const { data, errorMessage, loading, refetch, errorType } = useApi(
+    'reclamos',
     api.reclamos.getReclamos
   )
 

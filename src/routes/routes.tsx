@@ -1,6 +1,7 @@
 import React from 'react'
 import { useLocation } from 'react-router-dom'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
+import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 
 export type PageRoute = {
   path: string
@@ -43,7 +44,7 @@ export const routes = {
   reclamosDetail: {
     name: 'Reclamo',
     path: '/reclamos/:id',
-    component: Placeholder,
+    component: ReclamoDetailPage,
     params: ['id'],
   },
   reclamosCreate: {
