@@ -10,6 +10,7 @@ import {
   Td,
   TableContainer,
 } from '@chakra-ui/react'
+import { colors } from '@mui/material'
 
 export type Column<T extends string> = {
   key: T
@@ -18,15 +19,23 @@ export type Column<T extends string> = {
 }
 
 export type Row<T extends string> = {
-  [key in T]: string | React.ReactNode
+  [key in T]: {
+    data: string | number
+    component?: React.ReactNode
+  }
 }
 
 export type TableProps<T extends string> = {
-  columns: Column<T>[]
-  data: Row<T>[]
+  columns: readonly Column<T>[]
+  data: readonly Row<T>[]
+  onClickRow?: (row: Row<T>) => void
 }
 
-export const Table = <T extends string>({ columns, data }: TableProps<T>) => {
+export const Table = <T extends string>({
+  columns,
+  data,
+  onClickRow,
+}: TableProps<T>) => {
   return (
     <TableContainer>
       <ChakraTable variant="simple">
@@ -41,15 +50,23 @@ export const Table = <T extends string>({ columns, data }: TableProps<T>) => {
         </Thead>
         <Tbody>
           {data.map((row, i) => (
-            <Tr key={`row-${i}`}>
+            <Tr
+              key={`row-${i}`}
+              _hover={
+                onClickRow
+                  ? { bg: colors.grey[100], cursor: 'pointer' }
+                  : undefined
+              }
+              onClick={() => onClickRow?.(row)}
+            >
               {columns.map((column) => {
                 const cellValue = row[column.key]
                 return (
                   <Td key={column.key} isNumeric={column.isNumeric}>
-                    {typeof cellValue === 'string' ? (
-                      <Text>{cellValue}</Text>
+                    {cellValue.component ? (
+                      cellValue.component
                     ) : (
-                      cellValue
+                      <Text>{cellValue.data}</Text>
                     )}
                   </Td>
                 )

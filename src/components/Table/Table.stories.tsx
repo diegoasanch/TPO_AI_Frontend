@@ -31,16 +31,16 @@ Primary.args = {
   ],
   data: [
     {
-      id: '0x420',
-      name: 'John Doe',
-      email: 'test@email.com',
-      age: 42,
+      id: { data: '0x420' },
+      name: { data: 'John Doe' },
+      email: { data: 'test@email.com' },
+      age: { data: 42 },
     },
     {
-      id: '0x421',
-      name: 'John Doe 2',
-      email: 'test@email.com',
-      age: 33,
+      id: { data: '0x421' },
+      name: { data: 'John Doe 2' },
+      email: { data: 'test@email.com' },
+      age: { data: 33 },
     },
   ],
 }
