@@ -50,7 +50,7 @@ export class ApiClient {
 
     if (response.ok) {
       // Return ok response object
-      const data = await response.json()
+      const data = await response.json().catch(() => undefined)
       this.debug(`${prefix} Response data:`, data)
       return data as T
     } else {

@@ -1,6 +1,14 @@
 import { Edificio } from './edificio'
 import { Usuario, Persona } from './usuarios'
 
+export type EstadoReclamo =
+  | 'nuevo'
+  | 'abierto'
+  | 'enProceso'
+  | 'desestimado'
+  | 'anulado'
+  | 'terminado'
+
 export type Reclamo = {
   numero: number
   usuario: Usuario
@@ -16,7 +24,7 @@ export type Reclamo = {
     duenio: Persona[]
     inquilinos: Persona[]
   }
-  estado: string // TODO: Add enum
+  estado: EstadoReclamo
   imagenes: Imagen[]
 }
 

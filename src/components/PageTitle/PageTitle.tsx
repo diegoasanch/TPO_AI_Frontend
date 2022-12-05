@@ -14,7 +14,7 @@ export const PageTitle = ({
 }: PageTitleProps) => {
   return (
     <Flex direction="row" justifyContent="space-between" alignItems="center">
-      <Flex direction="row" alignItems="center" gap=".5rem">
+      <Flex direction="row" alignItems="center" gap="1rem">
         <Heading as="h1">{title}</Heading>
         {titleAddon}
       </Flex>
