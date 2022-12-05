@@ -1,44 +1,41 @@
-import { useBoolean } from '@chakra-ui/react'
-import { useCallback, useEffect, useState } from 'react'
-import { ApiResult } from './client'
+import { useCallback } from 'react'
+import { useQuery, useQueryClient } from 'react-query'
 
 export const useApi = <
-  T extends (...args: unknown[]) => Promise<unknown>,
-  R = Awaited<ReturnType<T>> extends ApiResult<infer U> ? U : never,
-  P = Parameters<T>
+  T extends (params: P) => Promise<R>,
+  R = Awaited<ReturnType<T>>,
+  P = Parameters<T> | undefined
 >(
+  key: string, // Key to use for react-query
   fetcher: T,
-  params?: P
+  params?: Partial<P>
 ): {
   data: R | undefined
+  loading: boolean
   errorMessage: string | undefined
   errorType: string | undefined
-  loading: boolean
   refetch: () => Promise<void>
 } => {
-  const [data, setData] = useState<R>()
-  const [errorType, setErrorType] = useState<string>()
-  const [errorMessage, setErrorMessage] = useState<string>()
-  const [loading, setLoading] = useBoolean(false)
+  const queryClient = useQueryClient()
+  const queryKey = [key, params]
+  const {
+    isLoading: loading,
+    error,
+    data,
+  } = useQuery<R, Error>(queryKey, (ctx) => {
+    console.log({ ctx })
+    return fetcher(ctx.queryKey[1] as P)
+  })
 
-  const fetchData = useCallback(async () => {
-    setLoading.on()
-    const result = (await fetcher(params)) as ApiResult<unknown>
-    if (!result.isError) {
-      setData(result.data as R)
-      setErrorMessage(undefined)
-      setErrorType(undefined)
-    } else {
-      setData(undefined)
-      setErrorMessage(result.error)
-      setErrorType(result.errorType)
-    }
-    setLoading.off()
-  }, [fetcher, params])
+  const refetch = useCallback(() => {
+    return queryClient.invalidateQueries(queryKey)
+  }, [queryKey, queryClient])
 
-  useEffect(() => {
-    fetchData()
-  }, [fetchData])
-
-  return { data, errorMessage, errorType, loading, refetch: fetchData }
+  return {
+    data,
+    loading,
+    errorMessage: error?.message,
+    errorType: error?.name,
+    refetch,
+  }
 }
