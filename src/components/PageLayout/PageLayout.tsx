@@ -20,8 +20,9 @@ export const PageLayout = ({
       direction="column"
       padding="2rem"
       width="100%"
-      height="100%"
+      height="100vh"
       gap="2rem"
+      overflowY="scroll"
     >
       <PageTitle
         title={title}
