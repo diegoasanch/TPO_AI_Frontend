@@ -1,16 +1,24 @@
-import { Text, Flex, Skeleton, Tag, useToast } from '@chakra-ui/react'
+import {
+  Text,
+  Flex,
+  Skeleton,
+  Tag,
+  useToast,
+  Card,
+  CardBody,
+} from '@chakra-ui/react'
 import React, { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
 import { PageLayout } from '../../components/PageLayout'
 import { useApi } from '../../api/useApi'
 import { api } from '../../api/api'
-import { camelToTitle } from '../../utils/text'
+
 import { EditStatusButton } from '../../components/EditStatusButton/EditStatusButton'
 import { ClaimStatus } from '../../utils/constants'
 import { ErrorBox } from '../../components/ErrorBox/ErrorBox'
 import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { useApiMutation } from '../../api/useApiMutation'
-import { useEffect } from 'react'
+import { Images } from '../../components/Images/Images'
 
 export const ReclamoDetailPage = () => {
   const toast = useToast()
@@ -19,6 +27,14 @@ export const ReclamoDetailPage = () => {
   const reclamo = useApi('reclamo_detail', api.reclamos.getReclamo, {
     id,
   })
+  const images = useMemo(() => {
+    return (
+      reclamo.data?.imagenes.map((image) => ({
+        src: image.direccion,
+        alt: `Imagen ${image.numero}`,
+      })) || []
+    )
+  }, [reclamo.data?.imagenes])
 
   const statusChange = useApiMutation(api.reclamos.updateStatus)
 
@@ -66,6 +82,53 @@ export const ReclamoDetailPage = () => {
         />
       )}
       {reclamo.loading && <LoadingContent title="Cargando reclamo..." />}
+
+      {/* Actual reclamo rendering */}
+      {!reclamo.loading && !reclamo.errorMessage && reclamo.data && (
+        <Flex direction="column" gap="2rem">
+          {/* Edificio */}
+          <Flex direction="row" gap="1rem">
+            <Text fontWeight="bold" fontSize="lg">
+              Edificio
+            </Text>
+            <Text fontSize="lg">
+              {reclamo.data.edificio.nombre} - {reclamo.data.edificio.direccion}{' '}
+            </Text>
+          </Flex>
+
+          {/* Unidad */}
+          <Flex direction="row" gap="1rem">
+            <Text fontWeight="bold" fontSize="lg">
+              Unidad
+            </Text>
+            <Text fontSize="lg">
+              #{reclamo.data.unidad.numero}, Piso {reclamo.data.unidad.piso}
+            </Text>
+          </Flex>
+
+          {/* Descripcion */}
+          <Flex direction="row" gap="1rem">
+            <Text fontWeight="bold" fontSize="lg">
+              Descripción
+            </Text>
+            <Card variant="filled" width="100%">
+              <CardBody>
+                <Text fontSize="lg">
+                  {reclamo.data.descripcion || 'Sin descripción'}
+                </Text>
+              </CardBody>
+            </Card>
+          </Flex>
+
+          {/* Imagenes */}
+          <Flex direction="row" gap="1rem">
+            <Text fontWeight="bold" fontSize="lg">
+              Imágenes
+            </Text>
+            <Images images={images} />
+          </Flex>
+        </Flex>
+      )}
     </PageLayout>
   )
 }
