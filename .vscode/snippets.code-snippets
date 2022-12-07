@@ -1,0 +1,40 @@
+{
+  "Storybook": {
+    "prefix": "sb",
+    "body": [
+      "import React from 'react'",
+      "import { ComponentStory, ComponentMeta } from '@storybook/react'",
+      "import { ${1:ComponentName}} from './${1:ComponentName}'",
+
+      "export default {",
+      "\ttitle: '${1:ComponentName}',",
+      "\tcomponent: ${1:ComponentName}",
+      "} as ComponentMeta<typeof ${1:ComponentName}>\n",
+
+      "const Template: ComponentStory<typeof ${1:ComponentName}> = (args) => (",
+      "\t<${1:ComponentName} {...args} />",
+      ")\n",
+      "export const Primary = Template.bind({})",
+      "Primary.args = {",
+      "\t${2:props}",
+      "}"
+    ]
+  },
+  "React component": {
+    "prefix": "rc",
+    "body": [
+      "import React from 'react'\n",
+      "export const ${1:ComponentName} = () => {",
+      "\treturn (",
+      "\t\t<>",
+      "\t\t\t<button>hi</button>",
+      "\t\t</>",
+      "\t)",
+      "}"
+    ]
+  },
+  "Export all": {
+    "prefix": "expa",
+    "body": "export * from './${1:ComponentName}'"
+  }
+}

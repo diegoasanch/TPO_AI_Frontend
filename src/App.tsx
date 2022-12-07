@@ -1,25 +1,21 @@
-import React from 'react'
-import logo from './logo.svg'
+import { ChakraProvider } from '@chakra-ui/react'
+import '@fontsource/roboto'
+import { QueryClient, QueryClientProvider } from 'react-query'
+import { RouterProvider } from 'react-router-dom'
 import './App.css'
-import { TestCounter } from './components/TestCounter'
+import { appRouter } from './routes/appRouter'
+import { theme } from './theme/theme'
+const queryClient = new QueryClient()
+
+const router = appRouter()
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <h1>TPO Aplicaciones Interactivas - UADE 2022</h1>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-        <TestCounter />
-      </header>
-    </div>
+    <QueryClientProvider client={queryClient}>
+      <ChakraProvider theme={theme}>
+        <RouterProvider router={router} />
+      </ChakraProvider>
+    </QueryClientProvider>
   )
 }
 
