@@ -1,5 +1,4 @@
-import React from 'react'
-import { Card, Flex, Text, Spinner } from '@chakra-ui/react'
+import { Card, Flex, Spinner, Text } from '@chakra-ui/react'
 import { colors } from '@mui/material'
 
 export type LoadingContentProps = {

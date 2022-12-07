@@ -1,7 +1,6 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { EditStatusButton } from './EditStatusButton'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ClaimStatus } from '../../utils/constants'
+import { EditStatusButton } from './EditStatusButton'
 export default {
   title: 'EditStatusButton',
   component: EditStatusButton,

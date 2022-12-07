@@ -1,7 +1,6 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { Sidebar } from './Sidebar'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { Role } from '../../utils/constants'
+import { Sidebar } from './Sidebar'
 
 export default {
   title: 'Sidebar',

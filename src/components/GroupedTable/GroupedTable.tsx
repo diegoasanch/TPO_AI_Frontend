@@ -1,5 +1,4 @@
 import { Flex, Heading } from '@chakra-ui/react'
-import React from 'react'
 import { Column, Row, Table } from '../Table/Table'
 
 export type TableGroup<T extends string> = {

@@ -1,8 +1,7 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { PageTitle } from './PageTitle'
 import { Heading } from '@chakra-ui/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 import { ActionButton, ActionButtonVariant } from '../ActionButton/ActionButton'
+import { PageTitle } from './PageTitle'
 export default {
   title: 'PageTitle',
   component: PageTitle,

@@ -1,5 +1,5 @@
 import { Edificio } from './edificio'
-import { Usuario, Persona } from './usuarios'
+import { Persona, Usuario } from './usuarios'
 
 export type EstadoReclamo =
   | 'nuevo'

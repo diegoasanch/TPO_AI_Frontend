@@ -1,8 +1,7 @@
-import React from 'react'
-import { Card, Flex, Text, Heading, Button } from '@chakra-ui/react'
-import { colors } from '@mui/material'
+import { Button, Card, Flex, Heading, Text } from '@chakra-ui/react'
 import ErrorIcon from '@mui/icons-material/Error'
 import ReplayIcon from '@mui/icons-material/Replay'
+import { colors } from '@mui/material'
 
 export type ErrorBoxProps = {
   title?: string

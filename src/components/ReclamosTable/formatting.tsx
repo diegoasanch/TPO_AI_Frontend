@@ -1,9 +1,8 @@
-import React from 'react'
-import { Reclamo } from '../../api/types/reclamos'
-import { ReclamoForTable, ReclamosTableType } from './constants'
-import { TableGroup } from '../GroupedTable/GroupedTable'
-import { camelToTitle } from '../../utils/text'
 import { Tag } from '@chakra-ui/react'
+import { Reclamo } from '../../api/types/reclamos'
+import { camelToTitle } from '../../utils/text'
+import { TableGroup } from '../GroupedTable/GroupedTable'
+import { ReclamoForTable, ReclamosTableType } from './constants'
 
 export const formatReclamoForTable = (reclamo: Reclamo): ReclamoForTable => ({
   id: { data: String(reclamo.numero) },

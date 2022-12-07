@@ -1,9 +1,9 @@
-import { routes, PageRoute } from '../../routes/routes'
 import { SvgIconComponent } from '@mui/icons-material'
-import AssignmentIcon from '@mui/icons-material/Assignment'
 import ApartmentIcon from '@mui/icons-material/Apartment'
+import AssignmentIcon from '@mui/icons-material/Assignment'
 import MapsHomeWorkIcon from '@mui/icons-material/MapsHomeWork'
 import PersonIcon from '@mui/icons-material/Person'
+import { PageRoute, routes } from '../../routes/routes'
 
 export type SidebarRoute = PageRoute & {
   Icon: SvgIconComponent

@@ -2,13 +2,13 @@ import React from 'react'
 
 import {
   Table as ChakraTable,
-  Thead,
-  Tbody,
-  Text,
-  Tr,
-  Th,
-  Td,
   TableContainer,
+  Tbody,
+  Td,
+  Text,
+  Th,
+  Thead,
+  Tr,
 } from '@chakra-ui/react'
 import { colors } from '@mui/material'
 

@@ -1,7 +1,6 @@
-import React from 'react'
 import { useLocation } from 'react-router-dom'
-import { ReclamosPage } from '../pages/Reclamos/Reclamos'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
+import { ReclamosPage } from '../pages/Reclamos/Reclamos'
 
 export type PageRoute = {
   path: string

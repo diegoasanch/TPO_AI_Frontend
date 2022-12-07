@@ -1,15 +1,14 @@
-import React from 'react'
 import {
-  Button,
-  Text,
-  Popover,
-  PopoverTrigger,
-  PopoverContent,
-  PopoverArrow,
-  PopoverHeader,
-  PopoverBody,
-  Flex,
   Avatar,
+  Button,
+  Flex,
+  Popover,
+  PopoverArrow,
+  PopoverBody,
+  PopoverContent,
+  PopoverHeader,
+  PopoverTrigger,
+  Text,
 } from '@chakra-ui/react'
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore'
 

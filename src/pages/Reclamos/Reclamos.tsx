@@ -1,13 +1,13 @@
-import React, { useEffect } from 'react'
-import { ActionButton } from '../../components/ActionButton'
-import { PageLayout } from '../../components/PageLayout'
-import { ActionButtonVariant } from '../../components/ActionButton/ActionButton'
-import { useApi } from '../../api/useApi'
-import { api } from '../../api/api'
 import { useToast } from '@chakra-ui/react'
-import { ReclamosTable } from '../../components/ReclamosTable/ReclamosTable'
-import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
+import { useEffect } from 'react'
+import { api } from '../../api/api'
+import { useApi } from '../../api/useApi'
+import { ActionButton } from '../../components/ActionButton'
+import { ActionButtonVariant } from '../../components/ActionButton/ActionButton'
 import { ErrorBox } from '../../components/ErrorBox/ErrorBox'
+import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
+import { PageLayout } from '../../components/PageLayout'
+import { ReclamosTable } from '../../components/ReclamosTable/ReclamosTable'
 
 export const ReclamosPage = () => {
   const toast = useToast()

@@ -1,8 +1,6 @@
 // Button.stories.ts|tsx
 
-import React from 'react'
-
-import { ComponentStory, ComponentMeta } from '@storybook/react'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
 
 import { ActionButton, ActionButtonVariant } from './ActionButton'
 

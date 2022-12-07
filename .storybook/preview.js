@@ -1,6 +1,6 @@
 import { ChakraProvider } from '@chakra-ui/react'
-import { MemoryRouter } from 'react-router-dom'
 import '@fontsource/roboto'
+import { MemoryRouter } from 'react-router-dom'
 import { theme } from '../src/theme/theme'
 
 export const parameters = {

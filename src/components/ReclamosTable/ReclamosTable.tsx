@@ -1,12 +1,12 @@
-import React, { useMemo } from 'react'
-import { Reclamo } from '../../api/types/reclamos'
-import { groupAndFormatReclamosForTable } from './formatting'
-import { GroupedTable } from '../GroupedTable/GroupedTable'
-import { columns, ReclamosTableType } from './constants'
-import { Row } from '../Table/Table'
+import { useMemo } from 'react'
 import { useNavigate } from 'react-router-dom'
+import { Reclamo } from '../../api/types/reclamos'
 import { buildRouteParams } from '../../routes/builder'
 import { routes } from '../../routes/routes'
+import { GroupedTable } from '../GroupedTable/GroupedTable'
+import { Row } from '../Table/Table'
+import { columns, ReclamosTableType } from './constants'
+import { groupAndFormatReclamosForTable } from './formatting'
 
 type ReclamosTableProps = {
   reclamos: Reclamo[]

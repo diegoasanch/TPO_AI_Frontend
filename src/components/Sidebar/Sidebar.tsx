@@ -1,10 +1,10 @@
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 
 import { Box, Flex, Heading } from '@chakra-ui/react'
 import { Role } from '../../utils/constants'
-import { AdminRoutes, UsuarioRoutes } from './sidebarRoutes'
 import { SessionButton } from '../SessionButton'
 import { SidebarLink } from '../SidebarLink'
+import { AdminRoutes, UsuarioRoutes } from './sidebarRoutes'
 
 export type SidebarProps = {
   userRole: Role

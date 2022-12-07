@@ -1,11 +1,10 @@
-import React from 'react'
-import './App.css'
 import { ChakraProvider } from '@chakra-ui/react'
+import '@fontsource/roboto'
+import { QueryClient, QueryClientProvider } from 'react-query'
 import { RouterProvider } from 'react-router-dom'
+import './App.css'
 import { appRouter } from './routes/appRouter'
 import { theme } from './theme/theme'
-import { QueryClient, QueryClientProvider } from 'react-query'
-import '@fontsource/roboto'
 const queryClient = new QueryClient()
 
 const router = appRouter()

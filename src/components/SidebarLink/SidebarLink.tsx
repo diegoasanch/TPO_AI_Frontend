@@ -1,7 +1,6 @@
 import { Flex, Text } from '@chakra-ui/react'
 import { SvgIconComponent } from '@mui/icons-material'
 import { colors } from '@mui/material'
-import React from 'react'
 import { Link, useMatch } from 'react-router-dom'
 
 export type SidebarLinkProps = {

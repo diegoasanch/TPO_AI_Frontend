@@ -1,8 +1,6 @@
-import React from 'react'
-
 import { createBrowserRouter, Navigate } from 'react-router-dom'
-import { PageRoute, RedirectRoute, routes } from './routes'
 import { PageTemplate } from '../components/PageTemplate/PageTemplate'
+import { PageRoute, RedirectRoute, routes } from './routes'
 
 export const appRouter = () => {
   const router = createBrowserRouter(

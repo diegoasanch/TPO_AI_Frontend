@@ -1,28 +1,28 @@
 import {
-  Text,
-  Flex,
-  Skeleton,
-  useToast,
   Card,
   CardBody,
+  Flex,
+  Skeleton,
+  Text,
+  useToast,
 } from '@chakra-ui/react'
-import React, { useMemo } from 'react'
+import { useMemo } from 'react'
 import { useParams } from 'react-router-dom'
-import { PageLayout } from '../../components/PageLayout'
-import { useApi } from '../../api/useApi'
 import { api } from '../../api/api'
+import { useApi } from '../../api/useApi'
+import { PageLayout } from '../../components/PageLayout'
 
-import { EditStatusButton } from '../../components/EditStatusButton/EditStatusButton'
-import { ClaimStatus } from '../../utils/constants'
-import { ErrorBox } from '../../components/ErrorBox/ErrorBox'
-import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { useApiMutation } from '../../api/useApiMutation'
+import { EditStatusButton } from '../../components/EditStatusButton/EditStatusButton'
+import { ErrorBox } from '../../components/ErrorBox/ErrorBox'
 import { Images } from '../../components/Images/Images'
+import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
+import { ClaimStatus } from '../../utils/constants'
 
 export const ReclamoDetailPage = () => {
   const toast = useToast()
   const { id: _id } = useParams<{ id: string }>()
-  const id = useMemo(() => _id, [_id])
+  const id = useMemo(() => _id, [_id]) // TODO: Stop memoizing this
   const reclamo = useApi('reclamo_detail', api.reclamos.getReclamo, {
     id,
   })

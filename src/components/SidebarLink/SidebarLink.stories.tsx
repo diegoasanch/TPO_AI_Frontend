@@ -1,7 +1,6 @@
-import React from 'react'
-import { ComponentStory, ComponentMeta } from '@storybook/react'
-import { SidebarLink } from './SidebarLink'
 import HomeIcon from '@mui/icons-material/Home'
+import { ComponentMeta, ComponentStory } from '@storybook/react'
+import { SidebarLink } from './SidebarLink'
 
 export default {
   title: 'SidebarLink',

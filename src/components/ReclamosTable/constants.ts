@@ -1,5 +1,5 @@
-import { InferTableType } from '../Table/utils'
 import { Row } from '../Table/Table'
+import { InferTableType } from '../Table/utils'
 
 export const columns = [
   {
