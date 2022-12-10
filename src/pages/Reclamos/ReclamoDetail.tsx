@@ -21,8 +21,7 @@ import { ClaimStatus } from '../../utils/constants'
 
 export const ReclamoDetailPage = () => {
   const toast = useToast()
-  const { id: _id } = useParams<{ id: string }>()
-  const id = useMemo(() => _id, [_id]) // TODO: Stop memoizing this
+  const { id } = useParams<{ id: string }>()
   const reclamo = useApi('reclamo_detail', api.reclamos.getReclamo, {
     id,
   })
