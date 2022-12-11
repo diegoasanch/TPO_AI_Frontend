@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom'
 import { EdificiosPage } from '../pages/Edificios/Edificios'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
+import { UnidadesPage } from '../pages/Unidades/Unidades'
 
 export type PageRoute = {
   path: string
@@ -75,7 +76,7 @@ export const routes = {
   unidadesView: {
     name: 'Unidades',
     path: '/unidades',
-    component: Placeholder,
+    component: UnidadesPage,
   },
   unidadesDetail: {
     name: 'Unidad',
