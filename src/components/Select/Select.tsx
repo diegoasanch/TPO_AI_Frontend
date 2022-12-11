@@ -49,7 +49,9 @@ export const Select = ({
         disabled={loading || error}
         {...ChakraSelectProps}
       >
-        <option disabled>Cambiar estado</option>
+        <option disabled selected={!value}>
+          Seleccionar
+        </option>
         {items.map((option) => (
           <option
             key={option.value}
