@@ -13,10 +13,10 @@ import { PageLayout } from '../../components/PageLayout'
 
 export const EdificiosPage = () => {
   const toast = useToast()
-  const { data, errorMessage, loading, refetch, errorType } = useApi(
-    'edificios',
-    api.edificios.getEdificios
-  )
+  const { data, errorMessage, loading, refetch, errorType } = useApi({
+    key: 'edificios',
+    fetcher: api.edificios.getEdificios,
+  })
 
   useEffect(() => {
     if (errorMessage) {

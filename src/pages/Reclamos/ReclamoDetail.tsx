@@ -22,8 +22,10 @@ import { ClaimStatus } from '../../utils/constants'
 export const ReclamoDetailPage = () => {
   const toast = useToast()
   const { id } = useParams<{ id: string }>()
-  const reclamo = useApi('reclamo_detail', api.reclamos.getReclamo, {
-    id,
+  const reclamo = useApi({
+    key: 'reclamo_detail',
+    fetcher: api.reclamos.getReclamo,
+    params: { id },
   })
   const images = useMemo(() => {
     return (

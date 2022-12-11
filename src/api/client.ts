@@ -11,7 +11,6 @@ type RequestParams = {
 export class ApiClient {
   private static client: ApiClient
   private token: string | undefined
-  // private requestControllers: Record<string, AbortController> = {}
 
   private constructor() {
     this.debug('Initializing API client')

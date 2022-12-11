@@ -11,10 +11,10 @@ import { ReclamosTable } from '../../components/ReclamosTable/ReclamosTable'
 
 export const ReclamosPage = () => {
   const toast = useToast()
-  const { data, errorMessage, loading, refetch, errorType } = useApi(
-    'reclamos',
-    api.reclamos.getReclamos
-  )
+  const { data, errorMessage, loading, refetch, errorType } = useApi({
+    key: 'reclamos',
+    fetcher: api.reclamos.getReclamos,
+  })
 
   useEffect(() => {
     if (errorMessage) {
