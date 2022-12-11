@@ -14,6 +14,7 @@ export class ApiClient {
 
   private constructor() {
     this.debug('Initializing API client')
+    this.token = 'not'
   }
 
   static getInstance(): ApiClient {
