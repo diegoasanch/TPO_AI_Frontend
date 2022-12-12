@@ -16,7 +16,7 @@ export type Reclamo = {
   edificio: Edificio
   ubicacion: string
   descripcion: string
-  unidad: Unidad
+  unidad?: Unidad
   estado: EstadoReclamo
   imagenes: Imagen[]
 }

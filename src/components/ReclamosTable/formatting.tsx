@@ -9,7 +9,7 @@ export const formatReclamoForTable = (reclamo: Reclamo): ReclamoForTable => ({
   descripcion: { data: reclamo.descripcion },
   edificio: { data: `${reclamo.edificio.codigo} - ${reclamo.edificio.nombre}` },
   nombreUsuario: { data: reclamo.usuario.nombre },
-  unidad: { data: reclamo.unidad.numero },
+  unidad: { data: reclamo.unidad?.numero || 'N/A' },
   acciones: { data: 'componentView', component: <Tag>Ver</Tag> },
 })
 

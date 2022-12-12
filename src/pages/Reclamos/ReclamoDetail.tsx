@@ -100,10 +100,12 @@ export const ReclamoDetailPage = () => {
           {/* Unidad */}
           <Flex direction="row" gap="1rem">
             <Text fontWeight="bold" fontSize="lg">
-              Unidad
+              {reclamo.data.unidad ? 'Unidad' : 'Zona común'}
             </Text>
             <Text fontSize="lg">
-              #{reclamo.data.unidad.numero}, Piso {reclamo.data.unidad.piso}
+              {reclamo.data.unidad
+                ? `#${reclamo.data.unidad.numero}, Piso ${reclamo.data.unidad.piso}`
+                : reclamo.data.ubicacion}
             </Text>
           </Flex>
 

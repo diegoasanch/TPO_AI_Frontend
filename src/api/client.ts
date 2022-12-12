@@ -5,7 +5,9 @@ export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type RequestParams = {
   path: string
   method: Method
-  payload?: unknown
+  payload?: object | FormData
+  contentType?: string
+  skipContentType?: boolean
 }
 
 export class ApiClient {
@@ -31,18 +33,29 @@ export class ApiClient {
       params.payload
     )
 
+    const contentType = params.contentType || 'application/json'
+
     const url = new URL(params.path, ENV.API_URL)
     const start = new Date().getTime()
+
+    let body: FormData | string | undefined = undefined
+    if (params.payload) {
+      if (contentType === 'application/json') {
+        body = JSON.stringify(params.payload)
+      } else {
+        body = params.payload as FormData
+      }
+    }
+
     const response = await fetch(url, {
       method: params.method,
       headers: {
-        'Content-Type': 'application/json',
+        ...(params.skipContentType ? {} : { 'Content-Type': contentType }),
         Accept: 'application/json',
         // Exclude token from headers if not set
         ...(this.token ? { 'X-Auth': this.token } : {}), // TODO: Test
       },
-      // signal: controller.signal,
-      body: params.payload ? JSON.stringify(params.payload) : undefined,
+      body,
     })
     const end = new Date().getTime()
     this.debug(`${prefix} Request took ${end - start}ms`)

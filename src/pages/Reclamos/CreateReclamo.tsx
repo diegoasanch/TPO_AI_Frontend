@@ -5,9 +5,11 @@ import {
   FormLabel,
   Input,
   Textarea,
+  useBoolean,
   useToast,
 } from '@chakra-ui/react'
 import { useEffect, useMemo, useState } from 'react'
+import { useNavigate } from 'react-router-dom'
 import { api } from '../../api/api'
 import { useApi } from '../../api/useApi'
 import { useApiMutation } from '../../api/useApiMutation'
@@ -21,6 +23,8 @@ import {
 } from '../../components/ImageSelector/ImageSelector'
 import { PageLayout } from '../../components/PageLayout/PageLayout'
 import { Select, SelectItem } from '../../components/Select/Select'
+import { buildRouteParams } from '../../routes/builder'
+import { routes } from '../../routes/routes'
 import {
   formatEdificioSelectOption,
   formatUnidadSelectOption,
@@ -28,6 +32,7 @@ import {
 
 export const CreateReclamo = () => {
   const toast = useToast()
+  const navigate = useNavigate()
 
   const [edificioOptions, setEdificioOptions] = useState<SelectItem[]>([])
   const [selectedEdificio, setSelectedEdificio] = useState<SelectItem>()
@@ -38,6 +43,7 @@ export const CreateReclamo = () => {
 
   const [zonaComun, setZonaComun] = useState(false)
   const [description, setDescription] = useState('')
+  const [imagesLoading, setImagesLoading] = useBoolean(false)
 
   const [images, setImages] = useState<LocalImage[]>([])
 
@@ -83,17 +89,40 @@ export const CreateReclamo = () => {
 
     if (!isReclamoValid) return
 
-    const result = await reclamoUpload.mutateAsync({
+    const reclamoResult = await reclamoUpload.mutateAsync({
       edificioId: selectedEdificio?.value || '',
-      unidadId: selectedUnidad?.value,
+      unidadId: selectedUnidad?.value || null,
       descripcion: description,
       location: lugar,
       creatorId: '0x42069', // TODO: use documento from LoginContext
     })
 
-    console.log({ result })
+    if (!reclamoResult) {
+      toast({
+        title: 'Error',
+        description:
+          'Ocurrio un error al crear el reclamo. Intente nuevamente.',
+        status: 'error',
+        position: 'top',
+        duration: 5000,
+        isClosable: true,
+      })
+      return
+    }
 
-    if (result) {
+    setImagesLoading.on()
+    const imagesResult = await Promise.allSettled(
+      images.map((image) =>
+        api.reclamos.uploadImage({
+          file: image.file,
+          reclamoId: String(reclamoResult.numero),
+        })
+      )
+    )
+    setImagesLoading.off()
+    const failed = imagesResult.filter((result) => result.status === 'rejected')
+
+    if (failed.length === 0) {
       toast({
         title: 'Reclamo creado',
         description: 'El reclamo fue creado con éxito.',
@@ -103,6 +132,20 @@ export const CreateReclamo = () => {
         isClosable: true,
       })
     }
+    if (failed.length > 0) {
+      toast({
+        title: 'Error',
+        description: `El reclamo fue creado con éxito, pero ocurrio un error al subir ${failed.length} imagenes.`,
+        status: 'warning',
+        position: 'top',
+        duration: 5000,
+        isClosable: true,
+      })
+    }
+
+    navigate(
+      buildRouteParams(routes.reclamosDetail, { id: reclamoResult.numero })
+    )
   }
 
   // Format edificio select options when data is loaded
@@ -206,7 +249,7 @@ export const CreateReclamo = () => {
             maxWidth="900px"
             variant={ActionButtonVariant.save}
             disabled={!isReclamoValid || reclamoUpload.loading}
-            isLoading={reclamoUpload.loading}
+            isLoading={reclamoUpload.loading || imagesLoading}
             type="submit"
           />
         </Flex>

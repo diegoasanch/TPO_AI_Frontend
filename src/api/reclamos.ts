@@ -43,7 +43,7 @@ export const reclamos = {
     edificioId: string
     descripcion: string
     creatorId: string
-    unidadId?: string
+    unidadId: string | null
     location?: string
   }): Promise<Reclamo> {
     const result = await apiClient.request<Reclamo>({
@@ -58,5 +58,19 @@ export const reclamos = {
       },
     })
     return result
+  },
+
+  async uploadImage(params: { file: File; reclamoId: string }): Promise<void> {
+    const formData = new FormData()
+    formData.append('imageFile', params.file)
+    formData.append('title', params.file.name)
+
+    await apiClient.request({
+      path: `/image/${params.reclamoId}`,
+      method: 'POST',
+      contentType: 'multipart/form-data',
+      skipContentType: true,
+      payload: formData,
+    })
   },
 }
