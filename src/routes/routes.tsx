@@ -7,6 +7,7 @@ import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
 import { CreateUnidad } from '../pages/Unidades/CreateUnidad'
 import { UnidadesPage } from '../pages/Unidades/Unidades'
+import { CreateUsuario } from '../pages/Usuarios/CreateUsuario'
 import { UsuariosPage } from '../pages/Usuarios/Usuarios'
 
 export type PageRoute = {
@@ -116,7 +117,7 @@ export const routes = {
   usuariosCreate: {
     name: 'Crear Usuario',
     path: '/usuarios/create',
-    component: Placeholder,
+    component: CreateUsuario,
   },
   usuariosEdit: {
     name: 'Editar Usuario',

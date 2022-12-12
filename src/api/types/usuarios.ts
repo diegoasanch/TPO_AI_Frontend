@@ -15,3 +15,5 @@ export type Persona = {
   identificador: number
   documento: string
 }
+
+export type CreateUsuarioResponse = Pick<Usuario, 'nombre' | 'documento'>
