@@ -7,6 +7,7 @@ import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
 import { CreateUnidad } from '../pages/Unidades/CreateUnidad'
 import { UnidadesPage } from '../pages/Unidades/Unidades'
+import { UsuariosPage } from '../pages/Usuarios/Usuarios'
 
 export type PageRoute = {
   path: string
@@ -104,7 +105,7 @@ export const routes = {
   usuariosView: {
     name: 'Usuarios',
     path: '/usuarios',
-    component: Placeholder,
+    component: UsuariosPage,
   },
   usuariosDetail: {
     name: 'Usuario',
