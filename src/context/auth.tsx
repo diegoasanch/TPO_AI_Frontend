@@ -13,7 +13,6 @@ const apiClient = ApiClient.getInstance()
 
 export const useAuth = () => {
   const toast = useToast()
-  const [loadingToken, setLoadingToken] = useState(true)
   const [loggedUser, setLoggedUser] = useState<LoggedUser>()
 
   const [token, setToken] = useLocalStorage<string | undefined>(

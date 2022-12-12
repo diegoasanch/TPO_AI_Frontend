@@ -1,8 +1,8 @@
 import { useMemo } from 'react'
-import { Persona, Usuario } from '../../api/types/usuarios';
+import { Usuario } from '../../api/types/usuarios'
 import { Table } from '../Table/Table'
 import { columns } from './constants'
-import { formatUsersForTable } from './formatting';
+import { formatUsersForTable } from './formatting'
 
 export type UsuariosTableProps = {
   usuarios: Usuario[]
