@@ -39,4 +39,32 @@ export const unidades = {
       method: 'GET',
     })
   },
+
+  async liberarDuenio(params: { id: string }): Promise<void> {
+    return await apiClient.request({
+      path: `/unidad/liberarDuenio/${params.id}`,
+      method: 'DELETE',
+    })
+  },
+
+  async liberarInquilino(params: { id: string }): Promise<void> {
+    return await apiClient.request({
+      path: `/unidad/liberarInquilino/${params.id}`,
+      method: 'DELETE',
+    })
+  },
+
+  async alquilar(params: { id: string; renterId: string }): Promise<void> {
+    return await apiClient.request({
+      path: `/unidad/${params.id}/alquilar/${params.renterId}`,
+      method: 'POST',
+    })
+  },
+
+  async cambiarDuenio(params: { id: string; ownerId: string }): Promise<void> {
+    return await apiClient.request({
+      path: `/unidad/${params.id}/cambiarTitularidad/${params.ownerId}`,
+      method: 'POST',
+    })
+  },
 }

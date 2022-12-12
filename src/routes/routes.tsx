@@ -6,6 +6,7 @@ import { CreateReclamo } from '../pages/Reclamos/CreateReclamo'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
 import { CreateUnidad } from '../pages/Unidades/CreateUnidad'
+import { EditUnidad } from '../pages/Unidades/EditUnidad'
 import { UnidadDetail } from '../pages/Unidades/UnidadDetail'
 import { UnidadesPage } from '../pages/Unidades/Unidades'
 import { CreateUsuario } from '../pages/Usuarios/CreateUsuario'
@@ -99,7 +100,7 @@ export const routes = {
   unidadesEdit: {
     name: 'Editar Unidad',
     path: '/unidades/:id/edit',
-    component: Placeholder,
+    component: EditUnidad,
     params: ['id'],
   },
 
