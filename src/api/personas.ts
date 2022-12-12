@@ -1,9 +1,27 @@
 import { ApiClient } from './client'
-import { CreateUsuarioResponse, Usuario } from './types/usuarios'
+import { CreateUsuarioResponse, LoginResult, Usuario } from './types/usuarios'
 
 const apiClient = ApiClient.getInstance()
 
 export const personas = {
+  async login(params: { id: string; password: string }): Promise<LoginResult> {
+    const result = await apiClient.request<LoginResult>({
+      path: '/persona/login',
+      method: 'POST',
+      payload: {
+        documento: params.id,
+        nombre: '',
+        password: params.password,
+      },
+    })
+    apiClient.setToken(result.jwt)
+    return result
+  },
+
+  async logout(): Promise<void> {
+    apiClient.removeToken()
+  },
+
   async getAll(): Promise<Usuario[]> {
     const result = await apiClient.request<Usuario[]>({
       path: '/persona/all',

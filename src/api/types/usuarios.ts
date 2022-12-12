@@ -17,3 +17,8 @@ export type Persona = {
 }
 
 export type CreateUsuarioResponse = Pick<Usuario, 'nombre' | 'documento'>
+
+export type LoginResult = {
+  documento: string
+  jwt: string
+}
