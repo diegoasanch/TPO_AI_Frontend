@@ -14,12 +14,7 @@ export const personas = {
         password: params.password,
       },
     })
-    apiClient.setToken(result.jwt)
     return result
-  },
-
-  async logout(): Promise<void> {
-    apiClient.removeToken()
   },
 
   async getAll(): Promise<Usuario[]> {

@@ -1,5 +1,6 @@
 import { Box, Flex } from '@chakra-ui/react'
 import React from 'react'
+import { useAuthContext } from '../../context/auth'
 import { Role } from '../../utils/constants'
 import { Sidebar } from '../Sidebar/Sidebar'
 
@@ -9,10 +10,9 @@ export type PageTemplateProps = {
 }
 
 export const PageTemplate = ({ children, hideSidebar }: PageTemplateProps) => {
-  // TODO: extract constants from login hook
+  const auth = useAuthContext()
   const userRole = Role.ADMIN
   const userName = 'Elon Musk'
-  const onSignOut = () => console.warn('Sign out not implemented!')
 
   return (
     <Flex direction="row" width="100vw" height="100vh">
@@ -20,7 +20,7 @@ export const PageTemplate = ({ children, hideSidebar }: PageTemplateProps) => {
         <Sidebar
           userRole={userRole}
           userName={userName}
-          onSignOut={onSignOut}
+          onSignOut={auth.logout}
         />
       )}
       <Box flexGrow={1} width="100%" height="100%">

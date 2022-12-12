@@ -2,6 +2,7 @@ import { useLocation } from 'react-router-dom'
 import { CreateEdificio } from '../pages/Edificios/CreateEdificio'
 import { EdificioDetail } from '../pages/Edificios/EdificioDetail'
 import { EdificiosPage } from '../pages/Edificios/Edificios'
+import { Login } from '../pages/Login'
 import { CreateReclamo } from '../pages/Reclamos/CreateReclamo'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
@@ -18,6 +19,7 @@ export type PageRoute = {
   component: () => JSX.Element
   params?: readonly string[]
   noSidebar?: boolean
+  noAuth?: boolean
 }
 
 export type RedirectRoute = {
@@ -40,8 +42,9 @@ export const routes = {
   login: {
     path: '/login',
     name: 'Login',
-    component: Placeholder,
+    component: Login,
     noSidebar: true,
+    noAuth: true,
   },
 
   // Reclamos

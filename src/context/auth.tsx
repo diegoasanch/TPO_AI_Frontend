@@ -1,14 +1,23 @@
 import { useToast } from '@chakra-ui/react'
-import { useState } from 'react'
+import { useEffect, useState } from 'react'
 import { api } from '../api/api'
+import { ApiClient } from '../api/client'
 import { useApiMutation } from '../api/useApiMutation'
+import { useLocalStorage } from '../utils/localStorage'
 import { buildGenericContext } from './GenericContext'
+
+const apiClient = ApiClient.getInstance()
 
 export const useAuth = () => {
   const toast = useToast()
-  const [token, setToken] = useState<string>()
-  const loginMutation = useApiMutation({ fetcher: api.personas.login })
+  const [loadingToken, setLoadingToken] = useState(true)
+  const [token, setToken] = useLocalStorage<string | undefined>(
+    'auth-token',
+    undefined
+  )
   const [loginError, setLoginError] = useState<string>()
+
+  const loginMutation = useApiMutation({ fetcher: api.personas.login })
 
   const login = async (
     documento: string,
@@ -50,9 +59,23 @@ export const useAuth = () => {
     }
   }
 
+  const logout = async () => {
+    setToken(undefined)
+  }
+
+  // Keep API client in sync with token
+  useEffect(() => {
+    if (token) {
+      apiClient.setToken(token)
+    } else {
+      apiClient.removeToken()
+    }
+  }, [token])
+
   return {
     login,
-    // logout,
+    loginLoading: loginMutation.loading,
+    logout,
     loginError,
     isLoggedIn: !!token,
   }

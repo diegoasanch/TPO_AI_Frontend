@@ -16,7 +16,8 @@ export class ApiClient {
 
   private constructor() {
     this.debug('Initializing API client')
-    this.token = 'not'
+    const localToken = JSON.parse(localStorage.getItem('auth-token') || '"not"')
+    this.token = localToken
   }
 
   static getInstance(): ApiClient {

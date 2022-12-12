@@ -8,8 +8,6 @@ import {
 } from '@chakra-ui/react'
 import React, { useState } from 'react'
 import { useNavigate } from 'react-router-dom'
-import { api } from '../api/api'
-import { useApiMutation } from '../api/useApiMutation'
 import { useAuthContext } from '../context/auth'
 import { routes } from '../routes/routes'
 
@@ -21,8 +19,6 @@ export const Login = () => {
   const [password, setPassword] = useState('')
 
   const isFormValid = documento && password
-
-  const login = useApiMutation({ fetcher: api.personas.login })
 
   const handleDocumentoChange = (
     event: React.ChangeEvent<HTMLInputElement>
@@ -40,7 +36,10 @@ export const Login = () => {
     if (!isFormValid) return
     const loggedIn = await auth.login(documento, password)
     if (loggedIn) {
-      navigate(routes.reclamosView.path)
+      setTimeout(() => {
+        // Allow the context to update
+        navigate(routes.reclamosView.path)
+      }, 100)
     }
   }
 
@@ -75,7 +74,7 @@ export const Login = () => {
           <Button
             type="submit"
             disabled={!isFormValid}
-            isLoading={login.loading}
+            isLoading={auth.loginLoading}
           >
             Entrar
           </Button>
