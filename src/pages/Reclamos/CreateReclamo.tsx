@@ -248,7 +248,7 @@ export const CreateReclamo = () => {
           <ActionButton
             maxWidth="900px"
             variant={ActionButtonVariant.save}
-            disabled={!isReclamoValid || reclamoUpload.loading}
+            disabled={!isReclamoValid || reclamoUpload.loading || imagesLoading}
             isLoading={reclamoUpload.loading || imagesLoading}
             type="submit"
           />

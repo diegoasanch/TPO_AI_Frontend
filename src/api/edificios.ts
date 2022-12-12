@@ -18,4 +18,19 @@ export const edificios = {
     })
     return result
   },
+
+  async createEdificio(params: {
+    name: string
+    address: string
+  }): Promise<Edificio> {
+    const result = await apiClient.request<Edificio>({
+      path: '/edificio',
+      method: 'POST',
+      payload: {
+        nombre: params.name,
+        direccion: params.address,
+      },
+    })
+    return result
+  },
 }

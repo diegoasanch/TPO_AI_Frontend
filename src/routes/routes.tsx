@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import { CreateEdificio } from '../pages/Edificios/CreateEdificio'
 import { EdificioDetail } from '../pages/Edificios/EdificioDetail'
 import { EdificiosPage } from '../pages/Edificios/Edificios'
 import { CreateReclamo } from '../pages/Reclamos/CreateReclamo'
@@ -71,7 +72,7 @@ export const routes = {
   edificioCreate: {
     name: 'Crear Edificio',
     path: '/edificios/create',
-    component: Placeholder,
+    component: CreateEdificio,
   },
 
   // Unidades
