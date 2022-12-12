@@ -1,7 +1,6 @@
 import { Box, Flex, Heading, Text, useToast } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
 import { api } from '../../api/api'
-import { Edificio } from '../../api/types/edificio'
 import { useApi } from '../../api/useApi'
 import {
   ActionButton,
@@ -16,11 +15,7 @@ import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { PageLayout } from '../../components/PageLayout'
 import { Select, SelectItem } from '../../components/Select/Select'
 import { UnidadesTable } from '../../components/UnidadesTable/UnidadesTable'
-
-const formatEdificioSelectOption = (edificio: Edificio): SelectItem => ({
-  value: String(edificio.codigo),
-  label: `${edificio.nombre} - ${edificio.direccion}`,
-})
+import { formatEdificioSelectOption } from '../../utils/formatting'
 
 export const UnidadesPage = () => {
   const toast = useToast()

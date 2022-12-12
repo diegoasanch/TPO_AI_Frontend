@@ -19,6 +19,7 @@ export type SelectProps = {
   items: SelectItem[]
   loading?: boolean
   error?: boolean
+  disabled?: boolean
   onRetry?: () => void
   onChange: (status: SelectItem) => void
   ChakraSelectProps?: ChakraSelectProps
@@ -31,6 +32,7 @@ export const Select = ({
   error,
   onRetry,
   onChange,
+  disabled,
   ChakraSelectProps,
 }: SelectProps) => {
   const changeHandler = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -46,7 +48,7 @@ export const Select = ({
         value={value?.value}
         onChange={changeHandler}
         width="10rem"
-        disabled={loading || error}
+        disabled={disabled || loading || error}
         {...ChakraSelectProps}
       >
         <option disabled selected={!value}>

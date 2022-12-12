@@ -1,6 +1,7 @@
 import { useLocation } from 'react-router-dom'
 import { EdificioDetail } from '../pages/Edificios/EdificioDetail'
 import { EdificiosPage } from '../pages/Edificios/Edificios'
+import { CreateReclamo } from '../pages/Reclamos/CreateReclamo'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
 import { UnidadesPage } from '../pages/Unidades/Unidades'
@@ -52,7 +53,7 @@ export const routes = {
   reclamosCreate: {
     name: 'Crear Reclamo',
     path: '/reclamos/create',
-    component: Placeholder,
+    component: CreateReclamo,
   },
 
   // Edificios
