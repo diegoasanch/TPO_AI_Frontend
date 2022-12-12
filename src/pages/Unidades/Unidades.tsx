@@ -7,6 +7,10 @@ import {
   ActionButton,
   ActionButtonVariant,
 } from '../../components/ActionButton'
+import {
+  EmptyState,
+  EmptyStateType,
+} from '../../components/EmptyState/EmptyState'
 import { ErrorBox } from '../../components/ErrorBox/ErrorBox'
 import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { PageLayout } from '../../components/PageLayout'
@@ -35,7 +39,7 @@ export const UnidadesPage = () => {
     loading: unidadesLoading,
     refetch: refetchUnidades,
   } = useApi({
-    key: 'unidades',
+    key: 'unidadesByEdificio',
     fetcher: api.unidades.getUnidadesByEdificio,
     params: { id: selectedEdificio?.value },
     enabled: !!selectedEdificio,
@@ -115,6 +119,13 @@ export const UnidadesPage = () => {
           title={unidadesErrorType}
           message={unidadesErrorMessage}
           onRetry={refetchUnidades}
+        />
+      )}
+      {(!selectedEdificio || unidadesData?.length === 0) && (
+        <EmptyState
+          type={
+            unidadesData ? EmptyStateType.NO_RESULTS : EmptyStateType.DEFAULT
+          }
         />
       )}
     </PageLayout>

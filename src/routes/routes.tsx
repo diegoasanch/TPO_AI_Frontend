@@ -1,4 +1,5 @@
 import { useLocation } from 'react-router-dom'
+import { EdificioDetail } from '../pages/Edificios/EdificioDetail'
 import { EdificiosPage } from '../pages/Edificios/Edificios'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
@@ -63,7 +64,7 @@ export const routes = {
   edificioDetail: {
     name: 'Edificio',
     path: '/edificios/:id',
-    component: Placeholder,
+    component: EdificioDetail,
     params: ['id'],
   },
   edificioCreate: {

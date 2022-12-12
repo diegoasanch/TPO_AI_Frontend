@@ -20,8 +20,9 @@ import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { ClaimStatus } from '../../utils/constants'
 
 export const ReclamoDetailPage = () => {
-  const toast = useToast()
   const { id } = useParams<{ id: string }>()
+  const toast = useToast()
+
   const reclamo = useApi({
     key: 'reclamo_detail',
     fetcher: api.reclamos.getReclamo,

@@ -13,6 +13,14 @@ export const reclamos = {
     return result
   },
 
+  async getReclamosByEdificio(params: { id: string }): Promise<Reclamo[]> {
+    const result = await apiClient.request<Reclamo[]>({
+      path: `/reclamo/edificio/${params.id}`,
+      method: 'GET',
+    })
+    return result
+  },
+
   async getReclamo(params: { id: string }): Promise<Reclamo> {
     const result = await apiClient.request<Reclamo>({
       path: `/reclamo/${params.id}`,
