@@ -1,7 +1,13 @@
+export enum Role {
+  Inquilino = 'Inquilino',
+  Propietario = 'Propietario',
+  Administrador = 'Administrador',
+}
+
 export type Usuario = {
   documento: string
   nombre: string
-  rol: string | null // TODO: Add role enum
+  rol: Role | null
 }
 
 export type Persona = {

@@ -5,6 +5,7 @@ import { EdificiosPage } from '../pages/Edificios/Edificios'
 import { CreateReclamo } from '../pages/Reclamos/CreateReclamo'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
+import { CreateUnidad } from '../pages/Unidades/CreateUnidad'
 import { UnidadesPage } from '../pages/Unidades/Unidades'
 
 export type PageRoute = {
@@ -90,7 +91,7 @@ export const routes = {
   unidadesCreate: {
     name: 'Crear Unidad',
     path: '/unidades/create',
-    component: Placeholder,
+    component: CreateUnidad,
   },
   unidadesEdit: {
     name: 'Editar Unidad',

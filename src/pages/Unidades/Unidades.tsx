@@ -1,5 +1,6 @@
 import { Box, Flex, Heading, Text, useToast } from '@chakra-ui/react'
 import { useEffect, useState } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../../api/api'
 import { useApi } from '../../api/useApi'
 import {
@@ -15,6 +16,7 @@ import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { PageLayout } from '../../components/PageLayout'
 import { Select, SelectItem } from '../../components/Select/Select'
 import { UnidadesTable } from '../../components/UnidadesTable/UnidadesTable'
+import { routes } from '../../routes/routes'
 import { formatEdificioSelectOption } from '../../utils/formatting'
 
 export const UnidadesPage = () => {
@@ -81,7 +83,11 @@ export const UnidadesPage = () => {
   return (
     <PageLayout
       title="Unidades"
-      rightAddon={<ActionButton variant={ActionButtonVariant.create} />}
+      rightAddon={
+        <Link to={routes.unidadesCreate.path}>
+          <ActionButton variant={ActionButtonVariant.create} />
+        </Link>
+      }
     >
       <Flex
         direction="column"
