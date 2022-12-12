@@ -32,4 +32,11 @@ export const unidades = {
     })
     return result
   },
+
+  async getById(params: { id: string }): Promise<Unidad> {
+    return await apiClient.request<Unidad>({
+      path: `/unidad/${params.id}`,
+      method: 'GET',
+    })
+  },
 }
