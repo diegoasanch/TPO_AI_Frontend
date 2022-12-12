@@ -1,4 +1,5 @@
 import { Grid, GridItem } from '@chakra-ui/react'
+import { EmptyState } from '../EmptyState/EmptyState'
 import { ImagePreview, ImagePreviewProps } from '../ImagePreview/ImagePreview'
 
 export type ImagesProps = {
@@ -22,6 +23,11 @@ export const Images = ({ images }: ImagesProps) => {
           <ImagePreview {...image} />
         </GridItem>
       ))}
+      <GridItem colSpan={3}>
+        {images.length === 0 && (
+          <EmptyState description="Este reclamo no posee imágenes." />
+        )}
+      </GridItem>
     </Grid>
   )
 }
