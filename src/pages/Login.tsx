@@ -3,6 +3,7 @@ import {
   Flex,
   FormControl,
   FormLabel,
+  Heading,
   Input,
   Text,
 } from '@chakra-ui/react'
@@ -44,15 +45,18 @@ export const Login = () => {
   }
 
   return (
-    <form onSubmit={handleFormSubmit}>
-      <Flex justifyContent="center" alignItems="center">
+    <form onSubmit={handleFormSubmit} style={{ width: '100%' }}>
+      <Flex justifyContent="center" alignItems="center" width="100%">
         <Flex
           direction="column"
           alignItems="center"
+          justifyContent="center"
           gap="2rem"
-          maxWidth="50rem"
+          maxWidth="35rem"
           padding="4rem"
+          width="100%"
         >
+          <Heading>Log In</Heading>
           <FormControl>
             <FormLabel>Documento</FormLabel>
             <Input
