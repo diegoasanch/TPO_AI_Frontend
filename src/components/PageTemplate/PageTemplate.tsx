@@ -12,14 +12,15 @@ export type PageTemplateProps = {
 export const PageTemplate = ({ children, hideSidebar }: PageTemplateProps) => {
   const auth = useAuthContext()
   const userRole = Role.ADMIN
-  const userName = 'Elon Musk'
 
   return (
     <Flex direction="row" width="100vw" height="100vh">
       {!hideSidebar && (
         <Sidebar
           userRole={userRole}
-          userName={userName}
+          user={
+            auth.loggedUser || { name: 'cargando...', documento: 'cargando...' }
+          }
           onSignOut={auth.logout}
         />
       )}

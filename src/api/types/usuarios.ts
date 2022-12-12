@@ -22,3 +22,8 @@ export type LoginResult = {
   documento: string
   jwt: string
 }
+
+export type LoggedUser = {
+  documento: string
+  name: string
+}

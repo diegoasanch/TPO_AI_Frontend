@@ -11,13 +11,14 @@ import {
   Text,
 } from '@chakra-ui/react'
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore'
+import { LoggedUser } from '../../api/types/usuarios'
 
 export type SessionButtonProps = {
-  userName: string
+  user: LoggedUser
   onSignOut?: () => void
 }
 
-export const SessionButton = ({ onSignOut, userName }: SessionButtonProps) => {
+export const SessionButton = ({ onSignOut, user }: SessionButtonProps) => {
   return (
     <Popover>
       <PopoverTrigger>
@@ -28,15 +29,17 @@ export const SessionButton = ({ onSignOut, userName }: SessionButtonProps) => {
           rightIcon={<UnfoldMoreIcon sx={{ fontSize: '1rem' }} />}
         >
           <Flex direction="row" alignItems="center" gap=".8rem" width="100%">
-            <Avatar size="sm" name={userName} bg="grey" />
-            <Text fontSize="md">{userName}</Text>
+            <Avatar size="sm" name={user.name} bg="grey" />
+            <Text fontSize="md">{user.name}</Text>
           </Flex>
         </Button>
       </PopoverTrigger>
 
       <PopoverContent>
         <PopoverArrow />
-        <PopoverHeader>{userName}</PopoverHeader>
+        <PopoverHeader>
+          {user.name} - {user.documento}
+        </PopoverHeader>
         <PopoverBody>
           <Button onClick={onSignOut} variant="solid">
             Cerrar sesión

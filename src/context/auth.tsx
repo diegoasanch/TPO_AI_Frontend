@@ -1,7 +1,10 @@
 import { useToast } from '@chakra-ui/react'
+
+import jwtDecode from 'jwt-decode'
 import { useEffect, useState } from 'react'
 import { api } from '../api/api'
 import { ApiClient } from '../api/client'
+import { LoggedUser } from '../api/types/usuarios'
 import { useApiMutation } from '../api/useApiMutation'
 import { useLocalStorage } from '../utils/localStorage'
 import { buildGenericContext } from './GenericContext'
@@ -11,6 +14,8 @@ const apiClient = ApiClient.getInstance()
 export const useAuth = () => {
   const toast = useToast()
   const [loadingToken, setLoadingToken] = useState(true)
+  const [loggedUser, setLoggedUser] = useState<LoggedUser>()
+
   const [token, setToken] = useLocalStorage<string | undefined>(
     'auth-token',
     undefined
@@ -31,7 +36,6 @@ export const useAuth = () => {
         password,
       })
       setToken(result.jwt)
-      // TODO: decode token
 
       toast({
         title: 'Login exitoso',
@@ -67,6 +71,10 @@ export const useAuth = () => {
   useEffect(() => {
     if (token) {
       apiClient.setToken(token)
+      const decoded: object = jwtDecode(token)
+      if ('name' in decoded && 'documento' in decoded) {
+        setLoggedUser(decoded as LoggedUser)
+      }
     } else {
       apiClient.removeToken()
     }
@@ -78,6 +86,7 @@ export const useAuth = () => {
     logout,
     loginError,
     isLoggedIn: !!token,
+    loggedUser,
   }
 }
 
