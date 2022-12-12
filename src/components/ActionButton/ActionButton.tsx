@@ -2,7 +2,7 @@ import AddIcon from '@mui/icons-material/Add'
 import EditIcon from '@mui/icons-material/Edit'
 import SaveIcon from '@mui/icons-material/Save'
 
-import { Button } from '@chakra-ui/react'
+import { Button, ButtonProps } from '@chakra-ui/react'
 import { colors } from '@mui/material'
 import { getButtonColors } from '../../theme/colors'
 
@@ -12,7 +12,7 @@ export enum ActionButtonVariant {
   edit = 'edit',
   save = 'save',
 }
-export type ActionButtonProps = {
+export type ActionButtonProps = Omit<ButtonProps, 'variant' | 'onClick'> & {
   variant: ActionButtonVariant
   onClick?: () => void
 }
@@ -52,7 +52,11 @@ const ActionButtonContent: Record<
   },
 } as const
 
-export const ActionButton = ({ variant, onClick }: ActionButtonProps) => {
+export const ActionButton = ({
+  variant,
+  onClick,
+  ...props
+}: ActionButtonProps) => {
   const content = ActionButtonContent[variant]
   const colors = getButtonColors(content.bgColorGroup, content.initalColorLevel)
 
@@ -65,6 +69,7 @@ export const ActionButton = ({ variant, onClick }: ActionButtonProps) => {
       _active={{ bg: colors.active }}
       _hover={{ bg: colors.hover }}
       color="white"
+      {...props}
     >
       {content.title}
     </Button>

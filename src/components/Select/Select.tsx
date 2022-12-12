@@ -15,7 +15,7 @@ export type SelectItem = {
 }
 
 export type SelectProps = {
-  value: SelectItem | undefined
+  value: SelectItem | undefined | null
   items: SelectItem[]
   loading?: boolean
   error?: boolean

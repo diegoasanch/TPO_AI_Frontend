@@ -37,7 +37,7 @@ export const ReclamoDetailPage = () => {
     )
   }, [reclamo.data?.imagenes])
 
-  const statusChange = useApiMutation(api.reclamos.updateStatus)
+  const statusChange = useApiMutation({ fetcher: api.reclamos.updateStatus })
 
   const handleStatusChange = async (status: ClaimStatus) => {
     if (!id || !status) return

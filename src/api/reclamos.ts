@@ -38,4 +38,25 @@ export const reclamos = {
       method: 'PUT',
     })
   },
+
+  async createReclamo(params: {
+    edificioId: string
+    descripcion: string
+    creatorId: string
+    unidadId?: string
+    location?: string
+  }): Promise<Reclamo> {
+    const result = await apiClient.request<Reclamo>({
+      path: '/reclamo',
+      method: 'POST',
+      payload: {
+        codigo: params.edificioId,
+        identificador: params.unidadId,
+        descripcion: params.descripcion,
+        documento: params.creatorId,
+        ubicacion: params.location,
+      },
+    })
+    return result
+  },
 }
