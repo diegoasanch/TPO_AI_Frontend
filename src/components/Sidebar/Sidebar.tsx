@@ -1,6 +1,7 @@
 import { useMemo } from 'react'
 
 import { Box, Flex, Heading } from '@chakra-ui/react'
+import { LoggedUser } from '../../api/types/usuarios'
 import { Role } from '../../utils/constants'
 import { SessionButton } from '../SessionButton'
 import { SidebarLink } from '../SidebarLink'
@@ -8,11 +9,11 @@ import { AdminRoutes, UsuarioRoutes } from './sidebarRoutes'
 
 export type SidebarProps = {
   userRole: Role
-  userName: string
+  user: LoggedUser
   onSignOut?: () => void
 }
 
-export const Sidebar = ({ userRole, userName, onSignOut }: SidebarProps) => {
+export const Sidebar = ({ userRole, user, onSignOut }: SidebarProps) => {
   const routes = useMemo(() => {
     if (userRole === Role.ADMIN) return AdminRoutes
     return UsuarioRoutes
@@ -44,7 +45,7 @@ export const Sidebar = ({ userRole, userName, onSignOut }: SidebarProps) => {
       </Flex>
 
       <Box>
-        <SessionButton userName={userName} onSignOut={onSignOut} />
+        <SessionButton user={user} onSignOut={onSignOut} />
       </Box>
     </Flex>
   )

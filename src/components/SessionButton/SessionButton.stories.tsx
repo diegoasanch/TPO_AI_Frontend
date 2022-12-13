@@ -12,5 +12,5 @@ const Template: ComponentStory<typeof SessionButton> = (args) => (
 
 export const Primary = Template.bind({})
 Primary.args = {
-  userName: 'Elon Musk',
+  user: { name: 'Elon Musk', documento: '1234567890' },
 }

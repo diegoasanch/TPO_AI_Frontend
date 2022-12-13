@@ -29,7 +29,7 @@ export const PageLayout = ({
         titleAddon={titleAddon}
         rightAddon={rightAddon}
       />
-      <Box width="100%" height="100%">
+      <Box width="100%" height="100%" marginBottom="120px">
         {children}
       </Box>
     </Flex>

@@ -1,11 +1,29 @@
+export enum Role {
+  Inquilino = 'Inquilino',
+  Propietario = 'Propietario',
+  Administrador = 'Administrador',
+}
+
 export type Usuario = {
   documento: string
   nombre: string
-  rol: string | null // TODO: Add role enum
+  rol: Role | null
 }
 
 export type Persona = {
   id: number
   identificador: number
   documento: string
+}
+
+export type CreateUsuarioResponse = Pick<Usuario, 'nombre' | 'documento'>
+
+export type LoginResult = {
+  documento: string
+  jwt: string
+}
+
+export type LoggedUser = {
+  documento: string
+  name: string
 }

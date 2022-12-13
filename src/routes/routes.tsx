@@ -1,7 +1,17 @@
 import { useLocation } from 'react-router-dom'
+import { CreateEdificio } from '../pages/Edificios/CreateEdificio'
+import { EdificioDetail } from '../pages/Edificios/EdificioDetail'
 import { EdificiosPage } from '../pages/Edificios/Edificios'
+import { Login } from '../pages/Login'
+import { CreateReclamo } from '../pages/Reclamos/CreateReclamo'
 import { ReclamoDetailPage } from '../pages/Reclamos/ReclamoDetail'
 import { ReclamosPage } from '../pages/Reclamos/Reclamos'
+import { CreateUnidad } from '../pages/Unidades/CreateUnidad'
+import { EditUnidad } from '../pages/Unidades/EditUnidad'
+import { UnidadDetail } from '../pages/Unidades/UnidadDetail'
+import { UnidadesPage } from '../pages/Unidades/Unidades'
+import { CreateUsuario } from '../pages/Usuarios/CreateUsuario'
+import { UsuariosPage } from '../pages/Usuarios/Usuarios'
 
 export type PageRoute = {
   path: string
@@ -9,6 +19,7 @@ export type PageRoute = {
   component: () => JSX.Element
   params?: readonly string[]
   noSidebar?: boolean
+  noAuth?: boolean
 }
 
 export type RedirectRoute = {
@@ -31,8 +42,9 @@ export const routes = {
   login: {
     path: '/login',
     name: 'Login',
-    component: Placeholder,
+    component: Login,
     noSidebar: true,
+    noAuth: true,
   },
 
   // Reclamos
@@ -50,7 +62,7 @@ export const routes = {
   reclamosCreate: {
     name: 'Crear Reclamo',
     path: '/reclamos/create',
-    component: Placeholder,
+    component: CreateReclamo,
   },
 
   // Edificios
@@ -62,36 +74,36 @@ export const routes = {
   edificioDetail: {
     name: 'Edificio',
     path: '/edificios/:id',
-    component: Placeholder,
+    component: EdificioDetail,
     params: ['id'],
   },
   edificioCreate: {
     name: 'Crear Edificio',
     path: '/edificios/create',
-    component: Placeholder,
+    component: CreateEdificio,
   },
 
   // Unidades
   unidadesView: {
     name: 'Unidades',
     path: '/unidades',
-    component: Placeholder,
+    component: UnidadesPage,
   },
   unidadesDetail: {
     name: 'Unidad',
     path: '/unidades/:id',
-    component: Placeholder,
+    component: UnidadDetail,
     params: ['id'],
   },
   unidadesCreate: {
     name: 'Crear Unidad',
     path: '/unidades/create',
-    component: Placeholder,
+    component: CreateUnidad,
   },
   unidadesEdit: {
     name: 'Editar Unidad',
     path: '/unidades/:id/edit',
-    component: Placeholder,
+    component: EditUnidad,
     params: ['id'],
   },
 
@@ -99,7 +111,7 @@ export const routes = {
   usuariosView: {
     name: 'Usuarios',
     path: '/usuarios',
-    component: Placeholder,
+    component: UsuariosPage,
   },
   usuariosDetail: {
     name: 'Usuario',
@@ -110,7 +122,7 @@ export const routes = {
   usuariosCreate: {
     name: 'Crear Usuario',
     path: '/usuarios/create',
-    component: Placeholder,
+    component: CreateUsuario,
   },
   usuariosEdit: {
     name: 'Editar Usuario',

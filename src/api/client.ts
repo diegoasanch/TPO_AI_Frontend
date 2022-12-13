@@ -5,16 +5,24 @@ export type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 type RequestParams = {
   path: string
   method: Method
-  variables?: unknown
+  payload?: object | FormData
+  contentType?: string
+  skipContentType?: boolean
 }
 
 export class ApiClient {
   private static client: ApiClient
   private token: string | undefined
-  // private requestControllers: Record<string, AbortController> = {}
 
   private constructor() {
     this.debug('Initializing API client')
+    const storedToken = localStorage.getItem('auth-token')
+
+    if (storedToken && storedToken !== 'undefined') {
+      this.token = JSON.parse(storedToken)
+    } else {
+      this.token = 'not'
+    }
   }
 
   static getInstance(): ApiClient {
@@ -27,22 +35,33 @@ export class ApiClient {
   async request<T>(params: RequestParams): Promise<T> {
     const prefix = `[ApiClient:request]`
     this.debug(
-      `${prefix} Requesting ${params.method} ${params.path}, variables:`,
-      params.variables
+      `${prefix} Requesting ${params.method} ${params.path}, payload:`,
+      params.payload
     )
+
+    const contentType = params.contentType || 'application/json'
 
     const url = new URL(params.path, ENV.API_URL)
     const start = new Date().getTime()
+
+    let body: FormData | string | undefined = undefined
+    if (params.payload) {
+      if (contentType === 'application/json') {
+        body = JSON.stringify(params.payload)
+      } else {
+        body = params.payload as FormData
+      }
+    }
+
     const response = await fetch(url, {
       method: params.method,
       headers: {
-        'Content-Type': 'application/json',
+        ...(params.skipContentType ? {} : { 'Content-Type': contentType }),
         Accept: 'application/json',
         // Exclude token from headers if not set
-        ...(this.token ? { Authorization: `Bearer ${this.token}` } : {}),
+        ...(this.token ? { 'X-Auth': this.token } : {}), // TODO: Test
       },
-      // signal: controller.signal,
-      body: params.variables ? JSON.stringify(params.variables) : undefined,
+      body,
     })
     const end = new Date().getTime()
     this.debug(`${prefix} Request took ${end - start}ms`)

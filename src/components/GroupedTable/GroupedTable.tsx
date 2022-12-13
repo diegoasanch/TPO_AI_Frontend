@@ -21,7 +21,7 @@ export const GroupedTable = <T extends string>({
     <Flex direction="column" gap="1.5rem">
       {groups.map((group) => (
         <Flex direction="column" key={group.title} gap=".6rem">
-          <Heading size="md">{group.title}</Heading>
+          <Heading size="sm">{group.title}</Heading>
           <Table columns={columns} data={group.data} onClickRow={onClickRow} />
         </Flex>
       ))}

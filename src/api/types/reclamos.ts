@@ -1,5 +1,6 @@
 import { Edificio } from './edificio'
-import { Persona, Usuario } from './usuarios'
+import { Unidad } from './unidades'
+import { Usuario } from './usuarios'
 
 export type EstadoReclamo =
   | 'nuevo'
@@ -15,15 +16,7 @@ export type Reclamo = {
   edificio: Edificio
   ubicacion: string
   descripcion: string
-  unidad: {
-    id: number
-    piso: string
-    numero: string
-    habitado: boolean
-    edificio: Edificio
-    duenio: Persona[]
-    inquilinos: Persona[]
-  }
+  unidad?: Unidad
   estado: EstadoReclamo
   imagenes: Imagen[]
 }

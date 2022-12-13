@@ -20,11 +20,13 @@ import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { ClaimStatus } from '../../utils/constants'
 
 export const ReclamoDetailPage = () => {
+  const { id } = useParams<{ id: string }>()
   const toast = useToast()
-  const { id: _id } = useParams<{ id: string }>()
-  const id = useMemo(() => _id, [_id]) // TODO: Stop memoizing this
-  const reclamo = useApi('reclamo_detail', api.reclamos.getReclamo, {
-    id,
+
+  const reclamo = useApi({
+    key: 'reclamo_detail',
+    fetcher: api.reclamos.getReclamo,
+    params: { id },
   })
   const images = useMemo(() => {
     return (
@@ -35,7 +37,7 @@ export const ReclamoDetailPage = () => {
     )
   }, [reclamo.data?.imagenes])
 
-  const statusChange = useApiMutation(api.reclamos.updateStatus)
+  const statusChange = useApiMutation({ fetcher: api.reclamos.updateStatus })
 
   const handleStatusChange = async (status: ClaimStatus) => {
     if (!id || !status) return
@@ -98,10 +100,12 @@ export const ReclamoDetailPage = () => {
           {/* Unidad */}
           <Flex direction="row" gap="1rem">
             <Text fontWeight="bold" fontSize="lg">
-              Unidad
+              {reclamo.data.unidad ? 'Unidad' : 'Zona común'}
             </Text>
             <Text fontSize="lg">
-              #{reclamo.data.unidad.numero}, Piso {reclamo.data.unidad.piso}
+              {reclamo.data.unidad
+                ? `#${reclamo.data.unidad.numero}, Piso ${reclamo.data.unidad.piso}`
+                : reclamo.data.ubicacion}
             </Text>
           </Flex>
 

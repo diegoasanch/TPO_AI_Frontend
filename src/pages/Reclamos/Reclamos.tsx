@@ -1,5 +1,6 @@
 import { useToast } from '@chakra-ui/react'
 import { useEffect } from 'react'
+import { Link } from 'react-router-dom'
 import { api } from '../../api/api'
 import { useApi } from '../../api/useApi'
 import { ActionButton } from '../../components/ActionButton'
@@ -8,13 +9,14 @@ import { ErrorBox } from '../../components/ErrorBox/ErrorBox'
 import { LoadingContent } from '../../components/LoadingContent/LoadingContent'
 import { PageLayout } from '../../components/PageLayout'
 import { ReclamosTable } from '../../components/ReclamosTable/ReclamosTable'
+import { routes } from '../../routes/routes'
 
 export const ReclamosPage = () => {
   const toast = useToast()
-  const { data, errorMessage, loading, refetch, errorType } = useApi(
-    'reclamos',
-    api.reclamos.getReclamos
-  )
+  const { data, errorMessage, loading, refetch, errorType } = useApi({
+    key: 'reclamos',
+    fetcher: api.reclamos.getReclamos,
+  })
 
   useEffect(() => {
     if (errorMessage) {
@@ -33,7 +35,11 @@ export const ReclamosPage = () => {
   return (
     <PageLayout
       title="Reclamos"
-      rightAddon={<ActionButton variant={ActionButtonVariant.create} />}
+      rightAddon={
+        <Link to={routes.reclamosCreate.path}>
+          <ActionButton variant={ActionButtonVariant.create} />
+        </Link>
+      }
     >
       {loading && <LoadingContent title="Buscando reclamos..." />}
       {data && !loading && !errorMessage && <ReclamosTable reclamos={data} />}
